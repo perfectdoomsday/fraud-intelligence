@@ -1,0 +1,10 @@
+apiVersion: 1
+providers:
+  - name: Fraud Intelligence
+    orgId: 1
+    folder: Fraud Intelligence
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /etc/grafana/provisioning/dashboards

@@ -1,0 +1,4 @@
+data:
+  rows: 20000
+  fraud_rate: 0.012
+  seed: 42

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/transaction.schema.json",
+  "title": "TransactionEvent",
+  "type": "object",
+  "required": ["transaction_id", "customer_id", "account_id", "amount", "currency", "merchant_id", "timestamp", "device_id"],
+  "properties": {
+    "transaction_id": {"type": "string", "minLength": 3, "maxLength": 80},
+    "customer_id": {"type": "string", "minLength": 1, "maxLength": 80},
+    "account_id": {"type": "string", "minLength": 1, "maxLength": 80},
+    "amount": {"type": "number", "exclusiveMinimum": 0},
+    "currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+    "merchant_id": {"type": "string"},
+    "merchant_category": {"type": "string"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "payment_method": {"type": "string"},
+    "device_id": {"type": "string"},
+    "ip_address": {"type": "string"},
+    "latitude": {"type": ["number", "null"], "minimum": -90, "maximum": 90},
+    "longitude": {"type": ["number", "null"], "minimum": -180, "maximum": 180},
+    "channel": {"type": "string"},
+    "transaction_status": {"type": "string"},
+    "label_is_fraud": {"type": ["boolean", "null"]}
+  },
+  "additionalProperties": false
+}

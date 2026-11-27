@@ -1,0 +1,24 @@
+stages:
+  generate_synthetic_data:
+    cmd: python scripts/generate_data.py --rows 20000 --fraud-rate 0.012 --seed 42 --output data/synthetic_transactions.csv
+    deps:
+      - scripts/generate_data.py
+      - backend/app/services/feature_engineering.py
+    params:
+      - params.yaml:
+          - data.rows
+          - data.fraud_rate
+          - data.seed
+    outs:
+      - data/synthetic_transactions.csv
+  train_challenger:
+    cmd: python ml/training/train.py --input data/synthetic_transactions.csv --output artifacts/challenger.joblib
+    deps:
+      - ml/training/train.py
+      - data/synthetic_transactions.csv
+      - backend/app/services/feature_engineering.py
+    outs:
+      - artifacts/challenger.joblib
+    metrics:
+      - artifacts/challenger.metrics.json:
+          cache: false
